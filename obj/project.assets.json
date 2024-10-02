@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\farsidePackerGUI\\farsidePackerGUI.vbproj",
+      "projectUniqueName": "E:\\farsidePacker\\farsidePackerGUI.vbproj",
       "projectName": "farsidePackerGUI",
-      "projectPath": "E:\\farsidePackerGUI\\farsidePackerGUI.vbproj",
+      "projectPath": "E:\\farsidePacker\\farsidePackerGUI.vbproj",
       "packagesPath": "C:\\Users\\ham-d\\.nuget\\packages\\",
-      "outputPath": "E:\\farsidePackerGUI\\obj\\",
+      "outputPath": "E:\\farsidePacker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
