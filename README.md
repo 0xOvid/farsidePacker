@@ -8,6 +8,8 @@
 
 This is a tool i have made for my BSides København talk (2024) - "DIY Trojan horse or: how to get your malware past EDR". The tool demonstrates various methods of bypassing EDR and AV solutions. The tool takes the target binary AES encrypts it and adds the encrypted blob to a stub. The stub is used to unpack the binary in memory, resolve unputs and relocations, and then can use a verity of methods to transfer execution to the injed file.
 
+For a full writeup of my presentation see: https://medium.com/@0x0vid/bsides-cph-2024-writeup-diy-trojan-horse-or-how-to-get-your-malware-past-edr-0e5ed2196ccd
+The slides from the presentation is included as a .pdf: 2024-bsides-DIY-Trojanhorse_final.pdf
 
 # Install
 For this project to work as intended you will need the following configured:
