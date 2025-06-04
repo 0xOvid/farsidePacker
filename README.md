@@ -33,6 +33,13 @@ nimble install nimcrypto, winim, ptr_math -y
 To use this for packing your .exe. Either open the solution file (sln) with some version of Visual Studio and complie the project. Else go in the bin folder and use the pre compiled binary in there!
 When the GUI is loaded simply select the file you want packet. Add of remove the various options. And finally click the big yellow button and generate the fully packed executable!
 
+## As .dll
+It now also works as a dll, when compiling to .dll you will need to call the main function to get hte code running. Using rundll32 this can be done as follows:
+
+```
+rundll32 .\[packed_dll].dll, NimMain
+```
+
 ## Demo
 Kleanscan results<br>
 ![Alt text](./images/farsidePacker_full_evasion.png "farsidePacker Mimikatz demo")
