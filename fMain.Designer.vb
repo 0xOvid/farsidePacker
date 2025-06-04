@@ -22,19 +22,21 @@ Partial Class fMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(fMain))
-        GroupBox1 = New GroupBox()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(fMain))
+        gbPayload = New GroupBox()
+        cbAsDll = New CheckBox()
         btnRandomize = New Button()
-        Label3 = New Label()
-        Label2 = New Label()
+        lOutputFileName = New Label()
+        lFileToBePacked = New Label()
         btnBrowse = New Button()
         txtFileToBePacked = New TextBox()
         txtOutputFileName = New TextBox()
-        GroupBox2 = New GroupBox()
+        gbExecution = New GroupBox()
         cbInjectionMethod = New ComboBox()
         cbBinFormat = New ComboBox()
-        Label5 = New Label()
-        Label4 = New Label()
+        lBinaryFormat = New Label()
+        lInjectionMethod = New Label()
+        pbChineese = New PictureBox()
         PictureBox1 = New PictureBox()
         gbDebug = New GroupBox()
         btnClearLog = New Button()
@@ -44,88 +46,104 @@ Partial Class fMain
         llGithubLink = New LinkLabel()
         llMediumLink = New LinkLabel()
         Panel1 = New Panel()
-        Label6 = New Label()
-        GroupBox4 = New GroupBox()
+        cbLanguage = New ComboBox()
+        lIntro = New Label()
+        gbSandbox = New GroupBox()
         cbCheckSleep = New CheckBox()
-        Label9 = New Label()
+        lDelay = New Label()
         numDelayExecution = New NumericUpDown()
         cbCheckUsername = New CheckBox()
         cbCheckVM = New CheckBox()
         cbCheckRAM = New CheckBox()
-        Label7 = New Label()
+        lDelayExecution = New Label()
         cbDelayExecution = New ComboBox()
         GroupBox5 = New GroupBox()
-        GroupBox6 = New GroupBox()
+        gbEDR = New GroupBox()
         cbUserInput = New CheckBox()
         cbPatchETW = New CheckBox()
         cbUnhookNtDll = New CheckBox()
-        Label8 = New Label()
+        lSyscallObf = New Label()
         cbSysCall = New ComboBox()
         GroupBox7 = New GroupBox()
         cbLowEntropy = New CheckBox()
-        GroupBox8 = New GroupBox()
+        gbOutputLog = New GroupBox()
         txtOutputLog = New TextBox()
         btnGenerateBinary = New Button()
         cbFakeSignature = New CheckBox()
-        GroupBox3 = New GroupBox()
+        gbStatic = New GroupBox()
         GroupBox9 = New GroupBox()
-        GroupBox1.SuspendLayout()
-        GroupBox2.SuspendLayout()
+        PictureBox2 = New PictureBox()
+        gbPayload.SuspendLayout()
+        gbExecution.SuspendLayout()
+        CType(pbChineese, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         gbDebug.SuspendLayout()
         Panel1.SuspendLayout()
-        GroupBox4.SuspendLayout()
+        gbSandbox.SuspendLayout()
         CType(numDelayExecution, ComponentModel.ISupportInitialize).BeginInit()
-        GroupBox6.SuspendLayout()
-        GroupBox8.SuspendLayout()
-        GroupBox3.SuspendLayout()
+        gbEDR.SuspendLayout()
+        gbOutputLog.SuspendLayout()
+        gbStatic.SuspendLayout()
+        CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' GroupBox1
+        ' gbPayload
         ' 
-        GroupBox1.Controls.Add(btnRandomize)
-        GroupBox1.Controls.Add(Label3)
-        GroupBox1.Controls.Add(Label2)
-        GroupBox1.Controls.Add(btnBrowse)
-        GroupBox1.Controls.Add(txtFileToBePacked)
-        GroupBox1.Controls.Add(txtOutputFileName)
-        GroupBox1.ForeColor = SystemColors.Control
-        GroupBox1.Location = New Point(14, 285)
-        GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(405, 145)
-        GroupBox1.TabIndex = 1
-        GroupBox1.TabStop = False
-        GroupBox1.Text = "Payload"
+        gbPayload.Controls.Add(cbAsDll)
+        gbPayload.Controls.Add(btnRandomize)
+        gbPayload.Controls.Add(lOutputFileName)
+        gbPayload.Controls.Add(lFileToBePacked)
+        gbPayload.Controls.Add(btnBrowse)
+        gbPayload.Controls.Add(txtFileToBePacked)
+        gbPayload.Controls.Add(txtOutputFileName)
+        gbPayload.ForeColor = SystemColors.Control
+        gbPayload.Location = New Point(14, 285)
+        gbPayload.Name = "gbPayload"
+        gbPayload.Size = New Size(405, 169)
+        gbPayload.TabIndex = 1
+        gbPayload.TabStop = False
+        gbPayload.Text = "Payload"
+        ' 
+        ' cbAsDll
+        ' 
+        cbAsDll.AutoSize = True
+        cbAsDll.ForeColor = Color.Lime
+        cbAsDll.Location = New Point(17, 85)
+        cbAsDll.Name = "cbAsDll"
+        cbAsDll.Size = New Size(193, 19)
+        cbAsDll.TabIndex = 20
+        cbAsDll.Text = "Compile as .DLL - func: DllMain"
+        cbAsDll.UseVisualStyleBackColor = True
         ' 
         ' btnRandomize
         ' 
         btnRandomize.BackColor = SystemColors.Desktop
         btnRandomize.FlatStyle = FlatStyle.Flat
         btnRandomize.ForeColor = SystemColors.Control
-        btnRandomize.Location = New Point(260, 98)
+        btnRandomize.Location = New Point(261, 126)
         btnRandomize.Name = "btnRandomize"
         btnRandomize.Size = New Size(131, 25)
         btnRandomize.TabIndex = 6
         btnRandomize.Text = "Randomize"
         btnRandomize.UseVisualStyleBackColor = False
         ' 
-        ' Label3
+        ' lOutputFileName
         ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(15, 82)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(97, 15)
-        Label3.TabIndex = 5
-        Label3.Text = "Output file name"
+        lOutputFileName.AutoSize = True
+        lOutputFileName.Location = New Point(17, 110)
+        lOutputFileName.Name = "lOutputFileName"
+        lOutputFileName.Size = New Size(97, 15)
+        lOutputFileName.TabIndex = 5
+        lOutputFileName.Text = "Output file name"
         ' 
-        ' Label2
+        ' lFileToBePacked
         ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(15, 28)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(96, 15)
-        Label2.TabIndex = 4
-        Label2.Text = "File to be packed"
+        lFileToBePacked.AutoSize = True
+        lFileToBePacked.Location = New Point(15, 28)
+        lFileToBePacked.Name = "lFileToBePacked"
+        lFileToBePacked.Size = New Size(96, 15)
+        lFileToBePacked.TabIndex = 4
+        lFileToBePacked.Text = "File to be packed"
         ' 
         ' btnBrowse
         ' 
@@ -153,25 +171,25 @@ Partial Class fMain
         ' 
         txtOutputFileName.BackColor = SystemColors.InfoText
         txtOutputFileName.ForeColor = Color.Lime
-        txtOutputFileName.Location = New Point(16, 100)
+        txtOutputFileName.Location = New Point(17, 128)
         txtOutputFileName.Name = "txtOutputFileName"
         txtOutputFileName.Size = New Size(238, 23)
         txtOutputFileName.TabIndex = 3
         txtOutputFileName.Text = "something_random.exe"
         ' 
-        ' GroupBox2
+        ' gbExecution
         ' 
-        GroupBox2.Controls.Add(cbInjectionMethod)
-        GroupBox2.Controls.Add(cbBinFormat)
-        GroupBox2.Controls.Add(Label5)
-        GroupBox2.Controls.Add(Label4)
-        GroupBox2.ForeColor = SystemColors.Control
-        GroupBox2.Location = New Point(14, 498)
-        GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(405, 129)
-        GroupBox2.TabIndex = 2
-        GroupBox2.TabStop = False
-        GroupBox2.Text = "Execution"
+        gbExecution.Controls.Add(cbInjectionMethod)
+        gbExecution.Controls.Add(cbBinFormat)
+        gbExecution.Controls.Add(lBinaryFormat)
+        gbExecution.Controls.Add(lInjectionMethod)
+        gbExecution.ForeColor = SystemColors.Control
+        gbExecution.Location = New Point(13, 537)
+        gbExecution.Name = "gbExecution"
+        gbExecution.Size = New Size(405, 129)
+        gbExecution.TabIndex = 2
+        gbExecution.TabStop = False
+        gbExecution.Text = "Execution"
         ' 
         ' cbInjectionMethod
         ' 
@@ -197,23 +215,34 @@ Partial Class fMain
         cbBinFormat.Size = New Size(379, 23)
         cbBinFormat.TabIndex = 10
         ' 
-        ' Label5
+        ' lBinaryFormat
         ' 
-        Label5.AutoSize = True
-        Label5.Location = New Point(14, 75)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(79, 15)
-        Label5.TabIndex = 9
-        Label5.Text = "Binary format"
+        lBinaryFormat.AutoSize = True
+        lBinaryFormat.Location = New Point(14, 75)
+        lBinaryFormat.Name = "lBinaryFormat"
+        lBinaryFormat.Size = New Size(79, 15)
+        lBinaryFormat.TabIndex = 9
+        lBinaryFormat.Text = "Binary format"
         ' 
-        ' Label4
+        ' lInjectionMethod
         ' 
-        Label4.AutoSize = True
-        Label4.Location = New Point(14, 19)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(98, 15)
-        Label4.TabIndex = 8
-        Label4.Text = "Injection Method"
+        lInjectionMethod.AutoSize = True
+        lInjectionMethod.Location = New Point(14, 19)
+        lInjectionMethod.Name = "lInjectionMethod"
+        lInjectionMethod.Size = New Size(98, 15)
+        lInjectionMethod.TabIndex = 8
+        lInjectionMethod.Text = "Injection method"
+        ' 
+        ' pbChineese
+        ' 
+        pbChineese.Image = CType(resources.GetObject("pbChineese.Image"), Image)
+        pbChineese.InitialImage = CType(resources.GetObject("pbChineese.InitialImage"), Image)
+        pbChineese.Location = New Point(18, 146)
+        pbChineese.Name = "pbChineese"
+        pbChineese.Size = New Size(675, 378)
+        pbChineese.TabIndex = 20
+        pbChineese.TabStop = False
+        pbChineese.Visible = False
         ' 
         ' PictureBox1
         ' 
@@ -231,7 +260,7 @@ Partial Class fMain
         gbDebug.Controls.Add(cbKeepPrintMessages)
         gbDebug.Controls.Add(cbKeepTmpFile)
         gbDebug.ForeColor = SystemColors.Control
-        gbDebug.Location = New Point(14, 436)
+        gbDebug.Location = New Point(14, 467)
         gbDebug.Name = "gbDebug"
         gbDebug.Size = New Size(406, 57)
         gbDebug.TabIndex = 4
@@ -258,7 +287,7 @@ Partial Class fMain
         cbKeepPrintMessages.Name = "cbKeepPrintMessages"
         cbKeepPrintMessages.Size = New Size(134, 19)
         cbKeepPrintMessages.TabIndex = 18
-        cbKeepPrintMessages.Text = "Keep Print messages"
+        cbKeepPrintMessages.Text = "Keep print messages"
         cbKeepPrintMessages.UseVisualStyleBackColor = True
         ' 
         ' cbKeepTmpFile
@@ -312,7 +341,8 @@ Partial Class fMain
         ' Panel1
         ' 
         Panel1.BorderStyle = BorderStyle.FixedSingle
-        Panel1.Controls.Add(Label6)
+        Panel1.Controls.Add(cbLanguage)
+        Panel1.Controls.Add(lIntro)
         Panel1.Controls.Add(llLinkedIn)
         Panel1.Controls.Add(llMediumLink)
         Panel1.Controls.Add(llGithubLink)
@@ -321,34 +351,44 @@ Partial Class fMain
         Panel1.Size = New Size(720, 74)
         Panel1.TabIndex = 8
         ' 
-        ' Label6
+        ' cbLanguage
         ' 
-        Label6.AutoSize = True
-        Label6.ForeColor = Color.Cyan
-        Label6.Location = New Point(13, 33)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(638, 30)
-        Label6.TabIndex = 8
-        Label6.Text = "This tool is intended for educational purposes only. " & vbCrLf & "The author is not responsible for any damages, unauthorized access, or illegal activities that may arise from this content."
+        cbLanguage.BackColor = SystemColors.Control
+        cbLanguage.DropDownStyle = ComboBoxStyle.DropDownList
+        cbLanguage.FormattingEnabled = True
+        cbLanguage.Location = New Point(662, 3)
+        cbLanguage.Name = "cbLanguage"
+        cbLanguage.Size = New Size(53, 23)
+        cbLanguage.TabIndex = 9
         ' 
-        ' GroupBox4
+        ' lIntro
         ' 
-        GroupBox4.Controls.Add(cbCheckSleep)
-        GroupBox4.Controls.Add(Label9)
-        GroupBox4.Controls.Add(numDelayExecution)
-        GroupBox4.Controls.Add(cbCheckUsername)
-        GroupBox4.Controls.Add(cbCheckVM)
-        GroupBox4.Controls.Add(cbCheckRAM)
-        GroupBox4.Controls.Add(Label7)
-        GroupBox4.Controls.Add(cbDelayExecution)
-        GroupBox4.Controls.Add(GroupBox5)
-        GroupBox4.ForeColor = SystemColors.Control
-        GroupBox4.Location = New Point(13, 713)
-        GroupBox4.Name = "GroupBox4"
-        GroupBox4.Size = New Size(693, 88)
-        GroupBox4.TabIndex = 9
-        GroupBox4.TabStop = False
-        GroupBox4.Text = "Evasion - Sandbox"
+        lIntro.AutoSize = True
+        lIntro.ForeColor = Color.Cyan
+        lIntro.Location = New Point(13, 33)
+        lIntro.Name = "lIntro"
+        lIntro.Size = New Size(638, 30)
+        lIntro.TabIndex = 8
+        lIntro.Text = "This tool is intended for educational purposes only. " & vbCrLf & "The author is not responsible for any damages, unauthorized access, or illegal activities that may arise from this content."
+        ' 
+        ' gbSandbox
+        ' 
+        gbSandbox.Controls.Add(cbCheckSleep)
+        gbSandbox.Controls.Add(lDelay)
+        gbSandbox.Controls.Add(numDelayExecution)
+        gbSandbox.Controls.Add(cbCheckUsername)
+        gbSandbox.Controls.Add(cbCheckVM)
+        gbSandbox.Controls.Add(cbCheckRAM)
+        gbSandbox.Controls.Add(lDelayExecution)
+        gbSandbox.Controls.Add(cbDelayExecution)
+        gbSandbox.Controls.Add(GroupBox5)
+        gbSandbox.ForeColor = SystemColors.Control
+        gbSandbox.Location = New Point(10, 773)
+        gbSandbox.Name = "gbSandbox"
+        gbSandbox.Size = New Size(693, 88)
+        gbSandbox.TabIndex = 9
+        gbSandbox.TabStop = False
+        gbSandbox.Text = "Evasion - Sandbox"
         ' 
         ' cbCheckSleep
         ' 
@@ -361,25 +401,25 @@ Partial Class fMain
         cbCheckSleep.Text = "Check sleep"
         cbCheckSleep.UseVisualStyleBackColor = True
         ' 
-        ' Label9
+        ' lDelay
         ' 
-        Label9.AutoSize = True
-        Label9.Location = New Point(466, 24)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(121, 15)
-        Label9.TabIndex = 17
-        Label9.Text = "Min. delay in seconds"
+        lDelay.AutoSize = True
+        lDelay.Location = New Point(466, 24)
+        lDelay.Name = "lDelay"
+        lDelay.Size = New Size(121, 15)
+        lDelay.TabIndex = 17
+        lDelay.Text = "Min. delay in seconds"
         ' 
         ' numDelayExecution
         ' 
         numDelayExecution.BackColor = Color.Cyan
-        numDelayExecution.Increment = New [Decimal](New Integer() {5, 0, 0, 0})
+        numDelayExecution.Increment = New Decimal(New Integer() {5, 0, 0, 0})
         numDelayExecution.Location = New Point(593, 22)
-        numDelayExecution.Maximum = New [Decimal](New Integer() {99999, 0, 0, 0})
+        numDelayExecution.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         numDelayExecution.Name = "numDelayExecution"
         numDelayExecution.Size = New Size(83, 23)
         numDelayExecution.TabIndex = 16
-        numDelayExecution.Value = New [Decimal](New Integer() {6, 0, 0, 0})
+        numDelayExecution.Value = New Decimal(New Integer() {6, 0, 0, 0})
         ' 
         ' cbCheckUsername
         ' 
@@ -414,14 +454,14 @@ Partial Class fMain
         cbCheckRAM.Text = "Check host RAM"
         cbCheckRAM.UseVisualStyleBackColor = True
         ' 
-        ' Label7
+        ' lDelayExecution
         ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(12, 25)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(91, 15)
-        Label7.TabIndex = 13
-        Label7.Text = "Delay Execution"
+        lDelayExecution.AutoSize = True
+        lDelayExecution.Location = New Point(12, 25)
+        lDelayExecution.Name = "lDelayExecution"
+        lDelayExecution.Size = New Size(91, 15)
+        lDelayExecution.TabIndex = 13
+        lDelayExecution.Text = "Delay Execution"
         ' 
         ' cbDelayExecution
         ' 
@@ -444,21 +484,21 @@ Partial Class fMain
         GroupBox5.TabStop = False
         GroupBox5.Text = "Evasion - EDR"
         ' 
-        ' GroupBox6
+        ' gbEDR
         ' 
-        GroupBox6.Controls.Add(cbUserInput)
-        GroupBox6.Controls.Add(cbPatchETW)
-        GroupBox6.Controls.Add(cbUnhookNtDll)
-        GroupBox6.Controls.Add(Label8)
-        GroupBox6.Controls.Add(cbSysCall)
-        GroupBox6.Controls.Add(GroupBox7)
-        GroupBox6.ForeColor = SystemColors.Control
-        GroupBox6.Location = New Point(13, 807)
-        GroupBox6.Name = "GroupBox6"
-        GroupBox6.Size = New Size(693, 88)
-        GroupBox6.TabIndex = 16
-        GroupBox6.TabStop = False
-        GroupBox6.Text = "Evasion - EDR"
+        gbEDR.Controls.Add(cbUserInput)
+        gbEDR.Controls.Add(cbPatchETW)
+        gbEDR.Controls.Add(cbUnhookNtDll)
+        gbEDR.Controls.Add(lSyscallObf)
+        gbEDR.Controls.Add(cbSysCall)
+        gbEDR.Controls.Add(GroupBox7)
+        gbEDR.ForeColor = SystemColors.Control
+        gbEDR.Location = New Point(10, 867)
+        gbEDR.Name = "gbEDR"
+        gbEDR.Size = New Size(693, 88)
+        gbEDR.TabIndex = 16
+        gbEDR.TabStop = False
+        gbEDR.Text = "Evasion - EDR"
         ' 
         ' cbUserInput
         ' 
@@ -493,14 +533,14 @@ Partial Class fMain
         cbUnhookNtDll.Text = "Unhook NtDll"
         cbUnhookNtDll.UseVisualStyleBackColor = True
         ' 
-        ' Label8
+        ' lSyscallObf
         ' 
-        Label8.AutoSize = True
-        Label8.Location = New Point(12, 25)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(108, 15)
-        Label8.TabIndex = 13
-        Label8.Text = "Syscall obfuscation"
+        lSyscallObf.AutoSize = True
+        lSyscallObf.Location = New Point(12, 25)
+        lSyscallObf.Name = "lSyscallObf"
+        lSyscallObf.Size = New Size(108, 15)
+        lSyscallObf.TabIndex = 13
+        lSyscallObf.Text = "Syscall obfuscation"
         ' 
         ' cbSysCall
         ' 
@@ -534,16 +574,16 @@ Partial Class fMain
         cbLowEntropy.Text = "Low Entropy"
         cbLowEntropy.UseVisualStyleBackColor = True
         ' 
-        ' GroupBox8
+        ' gbOutputLog
         ' 
-        GroupBox8.Controls.Add(txtOutputLog)
-        GroupBox8.ForeColor = SystemColors.Control
-        GroupBox8.Location = New Point(425, 285)
-        GroupBox8.Name = "GroupBox8"
-        GroupBox8.Size = New Size(282, 342)
-        GroupBox8.TabIndex = 17
-        GroupBox8.TabStop = False
-        GroupBox8.Text = "Output log"
+        gbOutputLog.Controls.Add(txtOutputLog)
+        gbOutputLog.ForeColor = SystemColors.Control
+        gbOutputLog.Location = New Point(425, 285)
+        gbOutputLog.Name = "gbOutputLog"
+        gbOutputLog.Size = New Size(282, 418)
+        gbOutputLog.TabIndex = 17
+        gbOutputLog.TabStop = False
+        gbOutputLog.Text = "Output log"
         ' 
         ' txtOutputLog
         ' 
@@ -556,7 +596,7 @@ Partial Class fMain
         txtOutputLog.Multiline = True
         txtOutputLog.Name = "txtOutputLog"
         txtOutputLog.ScrollBars = ScrollBars.Vertical
-        txtOutputLog.Size = New Size(263, 311)
+        txtOutputLog.Size = New Size(263, 382)
         txtOutputLog.TabIndex = 0
         ' 
         ' btnGenerateBinary
@@ -565,7 +605,7 @@ Partial Class fMain
         btnGenerateBinary.FlatStyle = FlatStyle.Popup
         btnGenerateBinary.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point)
         btnGenerateBinary.ForeColor = SystemColors.Desktop
-        btnGenerateBinary.Location = New Point(12, 907)
+        btnGenerateBinary.Location = New Point(10, 971)
         btnGenerateBinary.Name = "btnGenerateBinary"
         btnGenerateBinary.Size = New Size(693, 46)
         btnGenerateBinary.TabIndex = 7
@@ -583,18 +623,18 @@ Partial Class fMain
         cbFakeSignature.Text = "Fake Signature"
         cbFakeSignature.UseVisualStyleBackColor = True
         ' 
-        ' GroupBox3
+        ' gbStatic
         ' 
-        GroupBox3.Controls.Add(cbFakeSignature)
-        GroupBox3.Controls.Add(GroupBox9)
-        GroupBox3.Controls.Add(cbLowEntropy)
-        GroupBox3.ForeColor = SystemColors.Control
-        GroupBox3.Location = New Point(13, 649)
-        GroupBox3.Name = "GroupBox3"
-        GroupBox3.Size = New Size(693, 58)
-        GroupBox3.TabIndex = 19
-        GroupBox3.TabStop = False
-        GroupBox3.Text = "Evasion - Static"
+        gbStatic.Controls.Add(cbFakeSignature)
+        gbStatic.Controls.Add(GroupBox9)
+        gbStatic.Controls.Add(cbLowEntropy)
+        gbStatic.ForeColor = SystemColors.Control
+        gbStatic.Location = New Point(10, 709)
+        gbStatic.Name = "gbStatic"
+        gbStatic.Size = New Size(693, 58)
+        gbStatic.TabIndex = 19
+        gbStatic.TabStop = False
+        gbStatic.Text = "Evasion - Static"
         ' 
         ' GroupBox9
         ' 
@@ -606,59 +646,71 @@ Partial Class fMain
         GroupBox9.TabStop = False
         GroupBox9.Text = "Evasion - EDR"
         ' 
+        ' PictureBox2
+        ' 
+        PictureBox2.Location = New Point(10, 131)
+        PictureBox2.Name = "PictureBox2"
+        PictureBox2.Size = New Size(697, 400)
+        PictureBox2.TabIndex = 21
+        PictureBox2.TabStop = False
+        ' 
         ' fMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Desktop
-        ClientSize = New Size(719, 965)
-        Controls.Add(GroupBox3)
+        ClientSize = New Size(719, 1029)
+        Controls.Add(gbStatic)
         Controls.Add(btnGenerateBinary)
-        Controls.Add(GroupBox8)
-        Controls.Add(GroupBox6)
-        Controls.Add(GroupBox4)
+        Controls.Add(gbOutputLog)
+        Controls.Add(gbEDR)
+        Controls.Add(gbSandbox)
         Controls.Add(Panel1)
         Controls.Add(gbDebug)
         Controls.Add(PictureBox1)
-        Controls.Add(GroupBox2)
-        Controls.Add(GroupBox1)
+        Controls.Add(gbExecution)
+        Controls.Add(gbPayload)
+        Controls.Add(PictureBox2)
+        Controls.Add(pbChineese)
         ForeColor = SystemColors.Control
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "fMain"
         Text = "farsidePackerGUI"
-        GroupBox1.ResumeLayout(False)
-        GroupBox1.PerformLayout()
-        GroupBox2.ResumeLayout(False)
-        GroupBox2.PerformLayout()
+        gbPayload.ResumeLayout(False)
+        gbPayload.PerformLayout()
+        gbExecution.ResumeLayout(False)
+        gbExecution.PerformLayout()
+        CType(pbChineese, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         gbDebug.ResumeLayout(False)
         gbDebug.PerformLayout()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
-        GroupBox4.ResumeLayout(False)
-        GroupBox4.PerformLayout()
+        gbSandbox.ResumeLayout(False)
+        gbSandbox.PerformLayout()
         CType(numDelayExecution, ComponentModel.ISupportInitialize).EndInit()
-        GroupBox6.ResumeLayout(False)
-        GroupBox6.PerformLayout()
-        GroupBox8.ResumeLayout(False)
-        GroupBox8.PerformLayout()
-        GroupBox3.ResumeLayout(False)
-        GroupBox3.PerformLayout()
+        gbEDR.ResumeLayout(False)
+        gbEDR.PerformLayout()
+        gbOutputLog.ResumeLayout(False)
+        gbOutputLog.PerformLayout()
+        gbStatic.ResumeLayout(False)
+        gbStatic.PerformLayout()
+        CType(PictureBox2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gbPayload As GroupBox
     Friend WithEvents txtFileToBePacked As TextBox
     Friend WithEvents btnBrowse As Button
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents gbExecution As GroupBox
+    Friend WithEvents lFileToBePacked As Label
     Friend WithEvents btnRandomize As Button
-    Friend WithEvents Label3 As Label
+    Friend WithEvents lOutputFileName As Label
     Friend WithEvents cbInjectionTarget As ComboBox
     Friend WithEvents cbInjectionMethod As ComboBox
     Friend WithEvents cbBinFormat As ComboBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lBinaryFormat As Label
+    Friend WithEvents lInjectionMethod As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents gbDebug As GroupBox
@@ -666,25 +718,25 @@ Partial Class fMain
     Friend WithEvents llGithubLink As LinkLabel
     Friend WithEvents llMediumLink As LinkLabel
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Label6 As Label
-    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents lIntro As Label
+    Friend WithEvents gbSandbox As GroupBox
     Friend WithEvents cbCheckUsername As CheckBox
     Friend WithEvents cbCheckVM As CheckBox
     Friend WithEvents cbCheckRAM As CheckBox
-    Friend WithEvents Label7 As Label
+    Friend WithEvents lDelayExecution As Label
     Friend WithEvents cbDelayExecution As ComboBox
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents gbEDR As GroupBox
     Friend WithEvents cbPatchETW As CheckBox
     Friend WithEvents cbUnhookNtDll As CheckBox
-    Friend WithEvents Label8 As Label
+    Friend WithEvents lSyscallObf As Label
     Friend WithEvents cbSysCall As ComboBox
     Friend WithEvents GroupBox7 As GroupBox
-    Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents gbOutputLog As GroupBox
     Friend WithEvents txtOutputLog As TextBox
     Friend WithEvents btnGenerateBinary As Button
     Friend WithEvents txtOutputFileName As TextBox
-    Friend WithEvents Label9 As Label
+    Friend WithEvents lDelay As Label
     Friend WithEvents numDelayExecution As NumericUpDown
     Friend WithEvents cbCheckSleep As CheckBox
     Friend WithEvents cbKeepTmpFile As CheckBox
@@ -692,7 +744,12 @@ Partial Class fMain
     Friend WithEvents cbLowEntropy As CheckBox
     Friend WithEvents cbKeepPrintMessages As CheckBox
     Friend WithEvents cbFakeSignature As CheckBox
-    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents gbStatic As GroupBox
     Friend WithEvents GroupBox9 As GroupBox
     Friend WithEvents btnClearLog As Button
+    Friend WithEvents cbLanguage As ComboBox
+    Friend WithEvents pbChineese As PictureBox
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents pbRussian As PictureBox
+    Friend WithEvents cbAsDll As CheckBox
 End Class
